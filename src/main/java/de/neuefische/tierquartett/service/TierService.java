@@ -16,4 +16,8 @@ public class TierService {
     public List<Tier> getAllAnimals() {
         return new ArrayList<>(animalDb.getAllAnimals());
     }
+
+    public Tier addAnimal(Tier animal) {
+        return animalDb.addAnimal(animal);
+    }
 }

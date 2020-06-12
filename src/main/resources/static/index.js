@@ -1,3 +1,6 @@
+const addButton = document.getElementById("addAnimal");
+addButton.addEventListener("click",()=> addAnimal());
+
 
 async function listAnimals(){
     const response = await fetch("http://localhost:8080/animals");
@@ -45,6 +48,7 @@ function renderCardBody(animal){
 async function createCardsAnimals(){
     const animals = await listAnimals();
     const element = document.getElementById("animals");
+    element.innerHTML="";
     animals.forEach(animal => {
         const column = document.createElement("div");
         column.setAttribute("class", "col-12 col-sm-6 col-md-3 col-sm-2");
@@ -53,4 +57,30 @@ async function createCardsAnimals(){
         element.appendChild(column);
     });
 }
+async function addAnimal(){
+    const name =document.getElementById("name").value;
+    const age = Number(document.getElementById("age").value);
+    const gender = document.getElementById("gender").value;
+    const cute = document.getElementById("cute").checked;
+    const animal = {
+        name,
+        gender,
+        age,
+        cute
+    }
+    await sendAnimal(animal);
+    createCardsAnimals().catch(console.error);
+}
+
+async function sendAnimal(animal){
+    const response = await fetch("http://localhost:8080/animals",
+        {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(animal)
+        });
+}
+
 createCardsAnimals().catch(console.error);

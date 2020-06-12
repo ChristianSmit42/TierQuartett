@@ -1,11 +1,8 @@
 package de.neuefische.tierquartett.controller;
-import de.neuefische.tierquartett.db.TierDb;
 import de.neuefische.tierquartett.model.Tier;
 import de.neuefische.tierquartett.service.TierService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +15,11 @@ public class TierController {
     @GetMapping
     public List<Tier> getAllAnimals(){
         return animalService.getAllAnimals();
+    }
+
+    @PutMapping
+    public Tier addAnimal(@RequestBody Tier animal){
+        return animalService.addAnimal(animal);
     }
 
 }
