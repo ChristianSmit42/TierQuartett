@@ -3,7 +3,7 @@ addButton.addEventListener("click",()=> addAnimal());
 
 
 async function listAnimals(){
-    const response = await fetch("http://localhost:8080/animals");
+    const response = await fetch("animals");
     const animalList = await response.json();
     return animalList;
 }
@@ -73,7 +73,7 @@ async function addAnimal(){
 }
 
 async function sendAnimal(animal){
-    const response = await fetch("http://localhost:8080/animals",
+    const response = await fetch("animals",
         {
             method: "PUT",
             headers: {
