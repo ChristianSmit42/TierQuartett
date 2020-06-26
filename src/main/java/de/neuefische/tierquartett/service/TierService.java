@@ -1,23 +1,21 @@
 package de.neuefische.tierquartett.service;
 
-import de.neuefische.tierquartett.db.TierDb;
+import de.neuefische.tierquartett.db.TierDbMongo;
 import de.neuefische.tierquartett.model.Tier;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @Service
 public class TierService {
-    private final TierDb animalDb;
+    private final TierDbMongo animals;
 
-    public List<Tier> getAllAnimals() {
-        return new ArrayList<>(animalDb.getAllAnimals());
+    public Iterable<Tier> getAllAnimals() {
+        return animals.findAll();
     }
 
     public Tier addAnimal(Tier animal) {
-        return animalDb.addAnimal(animal);
+        return animals.save(animal);
     }
 }

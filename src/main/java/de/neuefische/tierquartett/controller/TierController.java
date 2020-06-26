@@ -4,7 +4,6 @@ import de.neuefische.tierquartett.service.TierService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -13,7 +12,7 @@ public class TierController {
      private final TierService animalService;
 
     @GetMapping
-    public List<Tier> getAllAnimals(){
+    public Iterable<Tier> getAllAnimals(){
         return animalService.getAllAnimals();
     }
 
